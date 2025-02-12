@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  become: true 
+  tasks:
+ 
+  - name: install apache2 package
+    apt:
+      name: apache2
+    when: ansible_distribution_version == "Ubuntu" 
+  
+  - name: install httpd
+    yum:
+      name: httpd
+      state: latest
+    when: ansible_distribution_version == "CentOS"
+
